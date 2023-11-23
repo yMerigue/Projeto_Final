@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Indie+Flower&family=Roboto:wght@100;400;500;700&family=Teko:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="icon" href="../img/WhatsApp Image 2023-09-12 at 15.34.05.jpg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Hamburgueria - ByteBurguer</title>
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+
+  <div class="top-messages">
+    {% with mensagens = get_flashed_messages(with_categories=True) %}
+        {% if mensagens %}
+            {% for categoria, mensagem in mensagens %}
+                <div class="alert {{ categoria }}">
+                    {{ mensagem }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+  
+  <div class="preloader" id="preloader">
+        <div class="loader" id="loader"></div>
+    </div>
+    <nav>
+        <div class="navegacao" id="nav">
+            <div class="titulos-nav" data-aos="zoom-in-down">
+                <h2 class="titulosecundario-nav" id="">Hamburgueria</h2>
+                <h1 class="tituloprincipal-nav">ByteBurguer</h1>
+            </div>
+            <div class="links-nav" data-aos="fade-up" data-aos-anchor-placement="top-center">
+              <a class="nav-link" href="#home">Home</a>
+              <a class="nav-link" href="#about">Sobre nós</a>
+              <a class="nav-link" href="#cardapio">Cardápio</a>
+              {% if current_user.is_authenticated %}
+                  <a class="nav-link" href="{{ url_for('perfil') }}"><i class="bi bi-person color-profile"></i></a>
+                  <a href="#"><i class="bi bi-cart2 color-cart"></i></a>
+                  <a class="logout" href="{{ url_for('sair') }}"><i class="bi bi-box-arrow-in-right color-logout"></i></a>
+              {% else %}
+                  <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+              {% endif %}
+          </div>
+        </div>
+    </nav>
+
+  <section class="section-img-text" id="home">
+    <div class="section-img-text">
+      <h1 class="tituloprincipal-sectionimg" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+        Sabor Autêntico <br />
+        Mais qualidade!!!
+        <p class="titulosecundario-sectionimg">
+          ByteBurguer: O encontro perfeito entre sabores autênticos e
+          qualidade excepcional. <br />
+          Venha se deliciar conosco!
+        </p>
+      </h1>
+    </div>
+  </section>
+  <section class="about" id="about">
+    <div class="img" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+      <img src="{{ url_for('static', filename='img/quem_somos.png') }}" alt="" />
+    </div>
+    </div>
+    <div class="historia" data-aos="flip-left">
+      <div class="titulo-about">
+        <h2>Hamburgueria ByteBurguer</h2>
+        <h1>Conheça a nossa história</h1>
+      </div>
+      <div class="textos-historia">
+        <p>
+          <strong>Nossa Origem: </strong>Fundada por Gabriel Khalil, Rafael
+          Cazé, Yuri Merigue, a ByteBurguer é o resultado empolgante da fusão
+          entre a arte de preparar hambúrgueres e o mundo da tecnologia, sem a
+          necessidade de um espaço físico.
+        </p>
+      </div>
+      <div class="textos-historia2">
+        <p class="p-about">
+          <strong>O Conceito: </strong>Na ByteBurguer, cada "byte" é um pedaço
+          de sabor. Nossos "hamburgbytes" são criações únicas, com nomes
+          inspirados em elementos da TI, trazendo um gostinho de inovação a
+          cada mordida.
+        </p>
+      </div>
+      <div class="textos-historia3">
+        <p class="p-about">
+          <strong>O Menu Vitural: </strong>Deixe-se envolver pelos nossos
+          "soft-burgers" e "hard-burgers", oferecendo opções desde o clássico
+          "BitBurger" até o surpreendente "CyberCheese". Todos os
+          "hamburgbytes" são preparados virtualmente com ingredientes frescos
+          e suculentos.
+        </p>
+      </div>
+      <div class="textos-historia4">
+        <p class="p-about">
+          <strong>Sabor e Tecnologia: </strong>Na ByteBurguer, não apenas
+          alimentamos seu apetite, mas também sua mente curiosa. Nossa
+          experiência não se limita ao paladar - ela incorpora uma jornada
+          virtual pelos sabores e pela TI.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="cardapio">
+    <div class="primeiro-container-cardapio" data-aos="zoom-in-down">
+      <div class="title-cardapio">
+        <h1 id="cardapio">Explore Nosso Cardápio!!!</h1>
+      </div>
+      <div class="bloco-imgs hamburguer">
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/carne_queijo.jpg') }}" alt="" />
+          <h1>Carne e Queijo</h1>
+          <h2>Pão e Maionese da Casa, Hambúrguer e Queijo Muçarela derretido.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/brie_burguer.jpg') }}" alt="" /> -->
+          <h1>Brie Burguer</h1>
+          <h2>Pão da Casa, Maionese Verde, Hambúrguer, Queijo Muçarela, Queijo Brie, Geleia de Pimenta e Rúcula.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/catupiry_com_bacon.jpg') }}" alt="" />
+          <h1>Catupiry com Bacon</h1>
+          <h2>Pão da Casa, Molho de Tomate Le Pinguê, Hambúrguer, Catupiry e Bacon crocante.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/cheddar.jpg') }}" alt="" />
+          <h1>Cheddar</h1>
+          <h2>Pão Australiano, Maionese da Casa, Hambúrguer, Cheddar, Cebola caramelizada e Bacon crocante.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="primeiro-container-cardapio" data-aos="zoom-in-down">
+      <div class="bloco-imgs hamburguer">
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/costela.jpg') }}" alt="" />
+          <h1>Costela</h1>
+          <h2>Pão e Maionese da Casa, Bacon crocante, Hambúrguer de Costela, Queijo Provolone, Molho Barbecue e Cebola
+            Roxa.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/duplo_bacon.jpg') }}" alt="" />
+          <h1>Duplo Bacon</h1>
+          <h2>Pão da Casa, Molho de Queijo, dois Hambúrgueres, Queijo Prato, Ketchup Le Pinguê e Bacon em tiras.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/smash_bacon.jpg') }}" alt="" />
+          <h1>Smash Bacon</h1>
+          <h2> Pão Especial, Maionese da Casa, Hambúrguer prensado, Queijo Cheddar e Bacon em tiras.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/pingue_chicken.jpg') }}" alt="" />
+          <h1>Chicken</h1>
+          <h2>Pão e Maionese da Casa, Hambúrguer de Frango empanado e Alface.
+          </h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div id="conteudo" style="display: none;">
+      <div class="bloco-imgs2 bebidas" data-aos="zoom-in-down">
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/refrigerantes.jpg') }}" alt="" />
+          <h1>Refrigerantes</h1>
+          <h2>Naquelas horas que bate uma vontade de beber um refrigerante geladinho, não adianta tentar: é impossível resistir!</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/agua.jpg') }}" alt="" />
+          <h1>Água com e sem Gás</h1>
+          <h2>Com gás ou sem gás? Refresque-se com sua água favorita.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/sucos.jpg') }}" alt="" />
+          <h1>Sucos del valle e integral</h1>
+          <h2>Sucos Del Valle e Prat's refrescante em qualquer hora.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/cervejas.jpg') }}" alt="" />
+          <h1>Heineken e Sol long neck</h1>
+          <h2>O Chopp já está gelado e te esperando pra mais tarde.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+      </div>
+
+      <div class="bloco-imgs3 porcoes" data-aos="zoom-in-down">
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/aneis_de_cebola.png') }}" alt="" />
+          <h1>Anéis de Cebola</h1>
+          <h2>Cortadas em forma de anéis, empanadas com uma leve camada de farinha de rosca já temperada. Acompanha Maionese de Pimenta.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/batata_rustica.png') }}" alt="" />
+          <h1>Batata Rústica</h1>
+          <h2>Acompanhamento perfeito, traz um sabor único além de ser muito gostosa e cremosa por dentro. Acompanha Maionese da Casa.
+          </h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/fritas_com_bacon.png') }}" alt="" />
+          <h1>Fritas com queijo e bacon</h1>
+          <h2>Aquela batatinha irresistível que você já conhece, coberta com molho de queijo cremoso e pedacinhos de bacon.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/palitos_mussarela.jpg') }}" alt="" />
+          <h1>Palitos de Mussarela</h1>
+          <h2>Aqueles Palitos de Muçarela crocantes, temperados e deliciosos que você respeita! Acompanha Maionese de Pimenta.</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+      </div>
+      <div class="bloco-imgs4 sobremesas" data-aos="zoom-in-down">
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/milkshakes.jpg') }}" alt="" />
+          <h1>Milk Shakes</h1>
+          <h2>Nossos Milk Shakes fazem qualquer um ficar apaixonado! Temos de Doce de Leite com Nozes, Ovomaltine, Morango e Nuttela!</h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+        <div class="first-burguer">
+          <img src="{{ url_for('static', filename='img/brownie_com_sorvete.jpg') }}" alt="" />
+          <h1>Brownie com sorvete</h1>
+          <h2>Combinação generosíssima de brownie de Doce de Leite ou Nutella, com sorvete de creme e calda de chocolate.
+          </h2>
+          <p>R$ 35,00</p>
+          <button>Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="botao-carregar">
+      <button id="exibir" onclick="toggleCardapio()" class="cardapio-button">Exibir cardápio completo</button>
+    </div>
+    </div>
+  </section>
+  <footer id="footer">
+    <h3>ByteBurguer</h3>
+    <p>A TI revolucinando a culinária</p>
+    <p><span>Entre em contato: </span>ByteBurguer@idecor.com.br </p>
+    <p><span>Ou pelo telefone: </span>+55 (14)99999-9999</p>
+    <p><span>Endereço:</span> Rua dos Tucunarés, 500, Marília Shopping</p>
+    <p><span>Nome da loja: </span>Hamburgueria ByteBurguer</p>
+  </footer>
+  <a class="btn-whatsapp" target="_blank" data-aos="zoom-in-up" data-aos-delay="400"
+    href="https://wa.me/+5514998140842?text=Informações%20sobre%20meu%20pedido"">
+    <!-- <img src=" img/whatssapp.svg" alt="botao whats"> -->
+    <img src="{{ url_for('static', filename='img/whatssapp.svg') }}" alt="botao whats" />
+    <span class="tooltip-text">Agende seu horário</span>
+    {% block body %}
+    {% endblock %}
+</body>
+
+<script>
+  AOS.init();
+  let isCardapioVisible = false;
+
+  //Funções para carregar e ocultar o cardápio completo!//
+  function toggleCardapio() {
+    const conteudo = document.getElementById('conteudo');
+    const exibirButton = document.getElementById('exibir');
+
+    if (isCardapioVisible) {
+      conteudo.style.display = 'none';
+      exibirButton.textContent = 'Exibir cardápio completo';
+    } else {
+      conteudo.style.display = 'block'; // ou 'flex' ou 'grid', dependendo do seu layout
+      exibirButton.textContent = 'Ocultar cardápio';
+    }
+
+    isCardapioVisible = !isCardapioVisible;
+  }
+  
+
+  //Criando função de preloader//
+  let elem_preloader = document.getElementById("preloader");
+  let elem_loader = document.getElementById("loader");
+ 
+
+  setTimeout(function () {
+    elem_preloader.classList.remove("preloader");
+    elem_loader.classList.remove("loader");
+  }, 5000);
+
+</script>
+
+</html>

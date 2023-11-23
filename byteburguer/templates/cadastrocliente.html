@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto:wght@100;400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styleprincipal.css') }}">
+  <link rel="icon" href="./img/WhatsApp Image 2023-09-12 at 15.34.05.jpg">
+
+  <title>Cadastro de conta</title>
+  {% block head %}
+  {% endblock %}
+</head>
+
+<body>
+  <div class="container-full2">
+    <div class="form-container">
+        <form id="bordaFormLeft" method="POST" action="">
+            {{ form_criarconta.csrf_token }}
+            <h1 class="principal">Dados pessoais</h1>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputName">Nome</label>
+                    {% if form_criarconta.nome.errors %}
+                                {{ form_criarconta.nome(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.nome.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.nome(class="form-control", placeholder="Digite o seu nome completo") }}
+                            {% endif %}
+                </div>
+          <div class="form-group col-md-6">
+            <label for="inputTelefone">Telefone</label>
+            {% if form_criarconta.telefone.errors %}
+                                {{ form_criarconta.telefone(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.telefone.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.telefone(class="form-control", placeholder="Ex: (xx) xxxxx-xxxx") }}
+                            {% endif %}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCpf">CPF</label>
+            {% if form_criarconta.cpf.errors %}
+                                {{ form_criarconta.cpf(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.cpf.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.cpf(class="form-control", placeholder="Informe o seu CPF") }}
+                            {% endif %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputTel">Senha</label>
+            {% if form_criarconta.senha.errors %}
+                                {{ form_criarconta.senha(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.senha.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.senha(class="form-control", placeholder="Digite uma senha") }}
+                            {% endif %}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail">Email</label>
+            {% if form_criarconta.email.errors %}
+                                {{ form_criarconta.email(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.email.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.email(class="form-control", placeholder="Digite o seu e-mail") }}
+                            {% endif %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputSenha">Confirmar Senha</label>
+            {% if form_criarconta.confirmacao_senha.errors %}
+                                {{ form_criarconta.confirmacao_senha(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.confirmacao_senha.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.confirmacao_senha(class="form-control", placeholder="Confirme a senha") }}
+                            {% endif %}
+          </div>
+        </div>
+        <h1 class="principal">Endereço</h1>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCep">CEP</label>
+            {% if form_criarconta.cep.errors %}
+                                {{ form_criarconta.cep(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.cep.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.cep(class="form-control", placeholder="Informe o seu CEP") }}
+                            {% endif %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEstado">Estado</label>
+            {% if form_criarconta.estado.errors %}
+                                {{ form_criarconta.estado(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.estado.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.estado(class="form-control", placeholder="Informe o estado") }}
+                            {% endif %}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCidade">Cidade</label>
+            {% if form_criarconta.cidade.errors %}
+                                {{ form_criarconta.cidade(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.cidade.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.cidade(class="form-control", placeholder="Informe a cidade") }}
+                            {% endif %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEndereco">Endereço</label>
+            {% if form_criarconta.endereco.errors %}
+                                {{ form_criarconta.endereco(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.endereco.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.endereco(class="form-control", placeholder="Informe o endereço") }}
+                            {% endif %}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputBairro">Bairro</label>
+            {% if form_criarconta.bairro.errors %}
+                                {{ form_criarconta.bairro(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.bairro.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.bairro(class="form-control", placeholder="Informe o bairro") }}
+                            {% endif %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputComplemento">Complemento</label>
+            {% if form_criarconta.complemento.errors %}
+                                {{ form_criarconta.complemento(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_criarconta.complemento.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form_criarconta.complemento(class="form-control", placeholder="Ex: número da casa, apartamento...") }}
+                            {% endif %}
+          </div>
+        </div>
+        <div class="button-container">
+          {{ form_criarconta.botao_submit_criarconta(class="btn btn-primary btn-criarconta") }}
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function buscaCep() {
+      let cep = document.getElementById('inputCep').value;
+      if (cep !== "") {
+        let url = "https://brasilapi.com.br/api/cep/v1/" + cep;
+
+        let req = new XMLHttpRequest();
+        req.open("GET", url);
+        req.send();
+
+        req.onload = function () {
+          if (req.status === 200) {
+            let endereco = JSON.parse(req.response);
+            document.getElementById("inputEndereco").value = endereco.street;
+            document.getElementById("inputBairro").value = endereco.neighborhood;
+            document.getElementById("inputCidade").value = endereco.city;
+            document.getElementById("inputEstado").value = endereco.state;
+          }
+          else if (req.status === 404) {
+            alert("CEP inválido");
+          }
+          else {
+            alert("Erro ao fazer a requisição");
+          }
+        }
+      }
+    }
+
+    window.onload = function () {
+      let cep = document.getElementById("inputCep");
+      cep.addEventListener("blur", buscaCep);
+    };
+
+  </script>
+  {% block body %}
+  {% endblock %}
+</body>
+
+</html>
